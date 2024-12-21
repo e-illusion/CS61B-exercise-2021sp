@@ -127,10 +127,14 @@ public class Model extends Observable {
      * */
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
-        if
+        int size = b.size();
+        for (int col = 0; col < size; col++) {
+            for (int row = 0; row < size; row++) {
+                if (b.tile(col, row) == null) return true;
+            }
+        }
         return false;
-    }
-
+ }
     /**
      * Returns true if any tile is equal to the maximum valid value.
      * Maximum valid value is given by MAX_PIECE. Note that
@@ -138,6 +142,13 @@ public class Model extends Observable {
      */
     public static boolean maxTileExists(Board b) {
         // TODO: Fill in this function.
+        int size = b.size();
+        for (int col = 0; col < size; col++) {
+            for (int row = 0; row < size; row++) {
+                Tile t = b.tile(col, row);
+                if (t != null && t.value() == Model.MAX_PIECE) return true;
+            }
+        }
         return false;
     }
 
@@ -149,6 +160,22 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+        if (emptySpaceExists(b)) return true;
+        int size = b.size();
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size - 1; col++) {
+                Tile current = b.tile(col, row);
+                Tile next = b.tile(col + 1, row);
+                if (current.value() == next.value()) return true;
+            }
+        }
+        for (int col = 0; col < size; col++) {
+            for (int row = 0; row < size - 1; row++) {
+                Tile current = b.tile(col, row);
+                Tile next = b.tile(col, row + 1);
+                if (current.value() == next.value()) return true;
+            }
+        }
         return false;
     }
 
