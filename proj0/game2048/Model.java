@@ -118,18 +118,7 @@ public class Model extends Observable {
         if (changed) {
             setChanged();
         }
-        return changed;
-    }
-
-    /** Checks if the game is over and sets the gameOver variable
-     *  appropriately.
-     */
-    private void checkGameOver() {
-        gameOver = checkGameOver(board);
-    }
-
-    /** Determine whether game is over. */
-    private static boolean checkGameOver(Board b) {
+        return changed; } /** Checks if the game is over and sets the gameOver variable *  appropriately. */ private void checkGameOver() { gameOver = checkGameOver(board); } /** Determine whether game is over. */ private static boolean checkGameOver(Board b) {
         return maxTileExists(b) || !atLeastOneMoveExists(b);
     }
 
@@ -138,6 +127,7 @@ public class Model extends Observable {
      * */
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
+        if
         return false;
     }
 
